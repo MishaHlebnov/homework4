@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Homework4 {
     public static void main (String[]args) {
         initMap();
@@ -28,5 +30,20 @@ public class Homework4 {
             System.out.println();
         }
         System.out.println();
+    }
+    public static Scanner scanner = new Scanner(System.in);
+    public static void human () {
+        int x,y;
+        do {
+            System.out.println(" Введите координаты ");
+            x = scanner.nextInt();
+            y = scanner.nextInt();
+        } while (!chekMethod(x,y));
+        map [x][y] = DOTE_X;
+    }
+    public static boolean chekMethod (int x,int y) {
+        if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return false;
+        if (map [y][x] == DOTE_T) return true;
+        return false;
     }
 }
