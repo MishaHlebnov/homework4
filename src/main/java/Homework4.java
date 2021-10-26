@@ -34,6 +34,8 @@ public class Homework4 {
     public static char DOTE_X = 'x';
     public static char DOTE_O = 'O';
     public static char DOTE_T = '•';
+    public static Scanner scanner = new Scanner(System.in);
+    public static Random random = new Random();
 
     public static boolean win (char znak) {
         if(map[0][0] == znak && map[0][1] == znak && map[0][2] == znak) return true;
@@ -54,7 +56,39 @@ public class Homework4 {
                 map[i][j] = DOTE_T;
             }
         }
-    } public static void printMap () {
+    }
+    public static boolean fifty_fifty () {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (map [i][j] == DOTE_T) return false;
+            }
+        }
+        return true;
+    }
+
+    public static void nanoMachine() {
+        int x,y;
+        do {
+            x = random.nextInt(SIZE);
+            y = random.nextInt(SIZE) ;
+        } while (!chekMethod(x,y));
+        map [y][x] = DOTE_O;
+    }
+    public static void human () {
+        int x,y;
+        do {
+            System.out.println(" Введите координаты ");
+            x = scanner.nextInt() - 1;
+            y = scanner.nextInt() - 1;
+        } while (!chekMethod(y,x));
+        map [x][y] = DOTE_X;
+    }
+    public static boolean chekMethod (int x,int y) {
+        if (x < 0 || x >= SIZE || y < 0 || y >= SIZE ) return false;
+        if (map [y][x] == DOTE_T) return true;
+        return false;
+    }
+    public static void printMap () {
         for (int i = 0; i <= SIZE; i++) {
             System.out.print(i + " ");
         }
@@ -68,38 +102,5 @@ public class Homework4 {
         }
         System.out.println();
     }
-    public static Scanner scanner = new Scanner(System.in);
 
-    public static boolean fifty_fifty () {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                map [i][j] = DOTE_T;
-                return false;
-            }
-        }
-        return true;
-    }
-    public static void human () {
-        int x,y;
-        do {
-            System.out.println(" Введите координаты ");
-            x = scanner.nextInt() - 1;
-            y = scanner.nextInt() - 1;
-        } while (!chekMethod(x,y));
-        map [x][y] = DOTE_X;
-    }
-    public static Random random = new Random();
-    public static void nanoMachine() {
-        int x,y;
-        do {
-            x = random.nextInt(3);
-            y = random.nextInt(3) ;
-        } while (!chekMethod(x,y));
-        map [x][y] = DOTE_O;
-    }
-    public static boolean chekMethod (int x,int y) {
-        if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return false;
-        if (map [y][x] == DOTE_T) return true;
-        return false;
-    }
 }
