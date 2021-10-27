@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Homework4 {
-    public static void main (String[]args) {
+    public static void main(String[] args) {
         initMap();
         printMap();
         while (true) {
@@ -29,7 +29,8 @@ public class Homework4 {
         }
         System.out.println("Это была великая битва");
     }
-    public static char map [][];
+
+    public static char map[][];
     public static final int SIZE = 3;
     public static char DOTE_X = 'x';
     public static char DOTE_O = 'O';
@@ -37,15 +38,14 @@ public class Homework4 {
     public static Scanner scanner = new Scanner(System.in);
     public static Random random = new Random();
 
-    public static boolean win (char znak) {
-        if(map[0][0] == znak && map[0][1] == znak && map[0][2] == znak) return true;
-        if(map[1][0] == znak && map[1][1] == znak && map[1][2] == znak) return true;
-        if(map[2][0] == znak && map[2][1] == znak && map[2][2] == znak) return true;
-        if(map[0][0] == znak && map[1][0] == znak && map[2][0] == znak) return true;
-        if(map[0][1] == znak && map[1][1] == znak && map[2][1] == znak) return true;
-        if(map[0][2] == znak && map[1][2] == znak && map[2][2] == znak) return true;
-        if(map[0][0] == znak && map[1][1] == znak && map[2][2] == znak) return true;
-        if(map[2][0] == znak && map[1][1] == znak && map[0][2] == znak) return true;
+    public static boolean win(char znak) {
+        for (int i = 0; i < SIZE; i++) {
+            if (map[i][0] == znak && map[i][1] == znak && map[i][2] == znak) return true;
+            if (map[0][i] == znak && map[1][i] == znak && map[2][i] == znak) return true;
+            if ((map[0][0] == znak && map[1][1] == znak && map[2][2] == znak) ||
+                    (map[2][0] == znak && map[1][1] == znak && map[0][2] == znak))
+                return true;
+        }
         return false;
     }
 
